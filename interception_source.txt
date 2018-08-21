@@ -1,0 +1,53 @@
+#include<iostream>
+#include <fstream>
+#include<math.h>
+#include<bits/stdc++.h>
+#include<cfloat>
+
+double func(double X, int deg, int a[], int b[])
+{   double f, expr;
+
+    f=pow(b[0]*X,0);
+    
+    for(int i=0;i<deg-1;i++)
+    {   
+
+        f=pow(b[i+1]*X,f);
+
+    }
+    
+    expr=pow(a[deg]*X,f);
+    
+    return expr;
+}
+
+
+using namespace std;
+
+int main()
+{   freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+    int T, N[300], A[300][300], count=0;
+
+    cin>>T;
+    
+    while(count<T)
+    {  cin>>N[count];
+    
+       for(int i=0; i<N[count]+1; i++)
+       { cin>>A[count][i]; }
+       
+       
+       if(N[count]%2!=0)
+       { cout<<"Case #"<<count+1<<": 1"<<endl<<"0.0"<<endl; }
+       
+       else
+       { cout<<"Case #"<<count+1<<": 0"<<endl; }
+        
+       count++;
+    }
+    
+    return 0;
+}
+
+
