@@ -1,0 +1,124 @@
+#include <iostream>
+#include <fstream>
+#include<string.h>
+#include<cstring>
+
+
+using namespace std;
+
+void make(int ct,char a[10000])
+{ int lena, lenb, f, index;
+  char fir;
+  char b[10000]={};
+  
+   f=0;
+   lena=strlen(a);
+   
+    for(int i=0;i<lena;i++) 
+    { 
+      if(a[i]>=97 && a[i]<=122)
+      {
+		a[i]=a[i]-32;
+      }
+    }
+   
+   fir=a[0];
+   
+   for(int i=1;i<lena;i++)
+   { if(fir==a[i]&&i!=lena-1)
+     { index=i; 
+         f=1;
+         break;
+     }
+   }
+
+   if(f==1)
+   {
+     for(int i=0;i<index;i++)
+     { 
+	 b[i]=a[i]; 
+	 }
+     
+     for(int i=index;i<lena+index;i++)
+     { 
+	 b[i]=a[i-index]; 
+	 }
+
+     lenb=strlen(b);
+     
+     int f=0, i, j;
+
+     for(i=0;i<lena;i++)
+     {   
+      for(j=0;j<lenb;j++)
+      {
+          if(i==lena)
+          { 
+		    f=1; 
+		    break;
+		  }
+          
+          if(a[i]==b[j])
+          { 
+		    i++;
+            continue;
+          }
+          
+          else if(a[i]!=b[j]&&i==0)
+          { 
+		  continue; 
+		  }
+          
+          else
+          { 
+		    i=0; 
+            j--;
+            continue; 
+		  }
+       }
+      
+      if(j==lenb)
+      { 
+	   f=0;  
+	   break; 
+	  }
+     }
+    
+    if(f==1)
+    { 
+	  cout<<"Case #"<<ct+1<<": "<<"Impossible"<<endl;
+    }
+    else if(f==0)
+    { 
+	  cout<<"Case #"<<ct+1<<": "<<b<<endl;
+    }
+   }
+   
+   else if(f!=1)
+   { 
+    cout<<"Case #"<<ct+1<<": "<<"Impossible"<<endl; 
+   }   
+}
+
+int main()
+{
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+	int T, ct=0;
+    bool flag;
+    
+    cin>>T;
+    char A[T][10000], B[T][10000];
+    while(ct<T)
+    {
+        cin>>A[ct];
+        make(ct,A[ct]);
+        ct++;  
+    }   
+    return 0;
+}
+
+
+
+
+  
